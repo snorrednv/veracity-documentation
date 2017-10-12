@@ -34,14 +34,26 @@ curl -v -X GET "https://api.dnvgl.com/platform/Mydata/api/resources?shared={bool
 '''
 
 ## Data API
-The Veracity Data Platform DataAPI is an API where developers and applications can get information on data containers, get their key to a data container or share a key with another Veracity Data Platform user.
-
+The Veracity Data Platform Data API is an API where developers and applications can get information on data containers, get their key to a data container or share a key with another Veracity Data Platform user. The main consumer as of now is the Veracity web application that integrates to these APIs to visual represent the data containers in the portal.
+  
+Data API does not have direct access to business data or data persistance responsibility, but rather it functions like a proxy API for the actual data containers in Azure. It authenticates the user through Azure B2C and has a role management system of the Veracity Data Platform Users in Veracity.
+  
+Users of the API need to include their API Management Subscripiton ID and a User Bearer Token in the header of their requests.
 
 
 ## Provision API
+The Veracity Data Platform Provision API is an API where developers and applications can generate data containers as a user of the platform. The main consumer as of now is the Veracity web application that integrates to this API to generate data containers in the portal.
+  
+The user provides a name for the container as well as a storage location, and they get a response containing container details. If something goes wrong, an error object is returned with a message describing what went wrong. When generating a data container thorugh this API you will need to post metadata for the container through the Metadata API (see below).
+  
+Users of the API need to include their API Management Subscripiton ID and a User Bearer Token in the header of their requests.
+
+
 
 ## Meta Data API
+The Veracity Data Platform Metadata API is an API where developers and applications can get/post information on data containers. The main consumer as of now is the Veracity web application that integrates to these APIs to visual represent the data containers in the portal.
 
+To be able to see the data container on the Veracity Portal you will need to add this if you programmatically create a container through the Provision API.
 
 # Pattern & Practices 
 In this section we will give theoretical and practical recommendations on how to best develop, design and implement your service 
